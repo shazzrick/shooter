@@ -1,14 +1,17 @@
 /* eslint-disable no-use-before-define */
 import Phaser from 'phaser';
+import MainMenu from './scenes/MainMenu';
+import GameMain from './scenes/GameMain';
+import GameOver from './scenes/GameOver';
 
 const config = {
   type: Phaser.WEBGL,
   parent: 'phaser-example',
   width: 880,
   height: 640,
-  backgroundColor: "black",
+  backgroundColor: 'black',
   physics: {
-    default: "arcade",
+    default: 'arcade',
     arcade: {
       gravity: { x: 0, y: 0 },
     },
