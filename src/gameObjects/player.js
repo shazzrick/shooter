@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Entity from './blueprint';
+import PlayerLaser from './playerLaser';
 
 export default class Player extends Entity {
   constructor(scene, x, y, key) {

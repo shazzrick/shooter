@@ -1,4 +1,3 @@
-import Phaser from 'phaser';
 import Entity from './blueprint';
 
 export default class EnemyLaser extends Entity {
