@@ -7,7 +7,7 @@ import GameOver from './scenes/GameOver';
 const config = {
   type: Phaser.WEBGL,
   parent: 'phaser-example',
-  width: 880,
+  width: 480,
   height: 640,
   backgroundColor: 'black',
   physics: {
