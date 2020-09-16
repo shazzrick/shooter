@@ -1,34 +1,26 @@
 /* eslint-disable no-use-before-define */
 import Phaser from 'phaser';
-import logoImg from './assets/logo.png';
 
 const config = {
-  type: Phaser.AUTO,
+  type: Phaser.WEBGL,
   parent: 'phaser-example',
-  width: 800,
-  height: 600,
-  scene: {
-    preload,
-    create,
+  width: 880,
+  height: 640,
+  backgroundColor: "black",
+  physics: {
+    default: "arcade",
+    arcade: {
+      gravity: { x: 0, y: 0 },
+    },
   },
+  scene: [
+    MainMenu,
+    GameMain,
+    GameOver,
+  ],
+  pixelArt: true,
+  roundPixels: true,
 };
 
 // eslint-disable-next-line no-unused-vars
 const game = new Phaser.Game(config);
-
-function preload() {
-  this.load.image('logo', logoImg);
-}
-
-function create() {
-  const logo = this.add.image(400, 150, 'logo');
-
-  this.tweens.add({
-    targets: logo,
-    y: 450,
-    duration: 2000,
-    ease: 'Power2',
-    yoyo: true,
-    loop: -1,
-  });
-}
