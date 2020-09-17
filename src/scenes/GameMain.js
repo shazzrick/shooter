@@ -8,6 +8,8 @@ import CarrierShip from '../gameObjects/carrierShip';
 export default class GameMain extends Phaser.Scene {
   constructor() {
     super({ key: 'GameMain' });
+
+    this.score = 0;
   }
 
   preload() {
@@ -42,6 +44,8 @@ export default class GameMain extends Phaser.Scene {
   }
 
   create() {
+    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
+
     this.player = new Player(
       this,
       this.game.config.width * 0.5,
@@ -149,7 +153,7 @@ export default class GameMain extends Phaser.Scene {
         if (enemy.onDestroy !== undefined) {
           enemy.onDestroy();
         }
-
+        this.setScore();
         enemy.explode(true);
         playerLaser.destroy();
       }
@@ -163,6 +167,11 @@ export default class GameMain extends Phaser.Scene {
         enemy.explode(true);
       }
     });
+  }
+
+  setScore() {
+    this.score += 10;
+    this.scoreText.setText(`Score: ${this.score}`);
   }
 
   update() {
