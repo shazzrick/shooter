@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import ScrollingBackground from './backgrounds';
+import { submitHighScore } from '../API/leaderboardCall';
 
 export default class GameOver extends Phaser.Scene {
   constructor() {
@@ -48,6 +49,19 @@ export default class GameOver extends Phaser.Scene {
       this.scene.start('GameMain');
     }, this);
 
+    this.btnRecord = this.add.sprite(
+      this.game.config.width * 0.85,
+      this.game.config.height * 0.9,
+      'sprBtnRecord',
+    );
+
+    this.btnRecord.setInteractive();
+    this.createButton(this.btnRecord, 'sprBtnRecord', 'sprBtnRecordHover', 'sprBtnRecordDown');
+    this.btnRecord.on('pointerup', () => {
+      this.btnRecord.setTexture('sprBtnRecord');
+      this.scene.start('SceneLeaderBoard');
+    }, this);
+
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) {
       const keys = ['sprBg0', 'sprBg1'];
@@ -55,11 +69,53 @@ export default class GameOver extends Phaser.Scene {
       const bg = new ScrollingBackground(this, key, i * 10);
       this.backgrounds.push(bg);
     }
+
+    this.userName = '';
+
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <input type="text" id="nameField" placeholder="Enter your name" style="font-size: 1.5rem width: ${this.game.config.width * 0.25}"><br>
+      <input type="button" name="submitButton" value="Submit Score" style="font-size: 1.5rem">
+    `;
+
+    const element = this.add.dom(280, 480, div);
+    element.addListener('click');
+
+    element.on('click', (event) => {
+      if (event.target.name === 'submitButton') {
+        const inputText = document.getElementById('nameField');
+        if (inputText.value !== '') {
+          element.removeListener('click');
+          element.setVisible(false);
+          this.userName = inputText.value;
+          this.submit = submitHighScore(this.userName, this.scores[0]);
+          this.submit.then(() => {
+            this.scene.start('SceneLeaderBoard');
+          });
+        }
+      }
+    });
   }
 
   update() {
     for (let i = 0; i < this.backgrounds.length; i += 1) {
       this.backgrounds[i].update();
     }
+  }
+
+  createButton(btn, spr, sprHover, sprDown) {
+    btn.on('pointerover', () => {
+      btn.setTexture(sprHover);
+      this.sfx.btnOver.play();
+    }, this);
+
+    btn.on('pointerout', () => {
+      btn.setTexture(spr);
+    });
+
+    btn.on('pointerdown', () => {
+      btn.setTexture(sprDown);
+      this.sfx.btnDown.play();
+    }, this);
   }
 }
