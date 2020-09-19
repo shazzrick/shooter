@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import Entity from './blueprint';
 import PlayerLaser from './playerLaser';
+import { storeScores } from '../localStorage';
 
 export default class Player extends Entity {
   constructor(scene, x, y, key) {
@@ -11,6 +12,7 @@ export default class Player extends Entity {
     this.setData('isShooting', false);
     this.setData('timerShootDelay', 10);
     this.setData('timerShootTick', this.getData('timerShootDelay') - 1);
+    this.setData('score', 0);
   }
 
   moveUp() {
@@ -38,6 +40,13 @@ export default class Player extends Entity {
       callbackScope: this,
       loop: false,
     });
+  }
+
+  setScore() {
+    if (!this.getData('isDead')) {
+      this.setData('score', this.getData('score') + 10);
+      storeScores(this.getData('score'));
+    }
   }
 
   update() {

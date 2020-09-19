@@ -1,6 +1,6 @@
 async function createGame() {
   const game = {
-    name: 'Star Wars - Space Shooter',
+    name: 'Space Shooter',
   };
   const post = JSON.stringify(game);
   const address = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';

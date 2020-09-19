@@ -8,8 +8,6 @@ import CarrierShip from '../gameObjects/carrierShip';
 export default class GameMain extends Phaser.Scene {
   constructor() {
     super({ key: 'GameMain' });
-
-    this.score = 0;
   }
 
   preload() {
@@ -44,13 +42,22 @@ export default class GameMain extends Phaser.Scene {
   }
 
   create() {
-    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
-
     this.player = new Player(
       this,
       this.game.config.width * 0.5,
       this.game.config.height * 0.5,
       'sprPlayer',
+    );
+
+    this.sceneScore = this.add.text(
+      this.game.config.width * 0.025,
+      this.game.config.height * 0.925,
+      `Score: ${this.player.getData('score')}`, {
+        color: '#d0c600',
+        fontFamily: 'sans-serif',
+        fontSize: '3vw',
+        lineHeight: 1.3,
+      },
     );
 
     this.anims.create({
@@ -88,6 +95,7 @@ export default class GameMain extends Phaser.Scene {
       ],
       laser: this.sound.add('sndLaser'),
     };
+
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) { // create five scrolling backgrounds
       const bg = new ScrollingBackground(this, 'sprBg0', i * 10);
@@ -149,11 +157,11 @@ export default class GameMain extends Phaser.Scene {
       }
     });
     this.physics.add.collider(this.playerLasers, this.enemies, (playerLaser, enemy) => {
-      if (enemy) {
+      if (enemy && !this.player.getData('isDead')) {
         if (enemy.onDestroy !== undefined) {
           enemy.onDestroy();
         }
-        this.setScore();
+        this.player.setScore(enemy.getData('score'));
         enemy.explode(true);
         playerLaser.destroy();
       }
@@ -169,15 +177,11 @@ export default class GameMain extends Phaser.Scene {
     });
   }
 
-  setScore() {
-    this.score += 10;
-    this.scoreText.setText(`Score: ${this.score}`);
-  }
-
   update() {
-    if (!this.player.getData('isDead')) {
-      this.player.update();
+    this.player.update();
+    this.sceneScore.text = `Score: ${this.player.getData('score')}`;
 
+    if (!this.player.getData('isDead')) {
       if (this.keyW.isDown) {
         this.player.moveUp();
       } else if (this.keyS.isDown) {

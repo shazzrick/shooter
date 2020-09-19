@@ -10,6 +10,7 @@ class SceneLeaderBoard extends Phaser.Scene {
   preload() {
     this.load.image('sprBg0', '../src/assets/sprBg0.png');
     this.load.image('sprBg1', '../src/assets/sprBg1.png');
+    this.load.image('sprBtnRestart', '../src/assets/sprBtnRestart.png');
 
     this.load.image('leaderBoardTitle', '../src/assets/leaderBoard.png');
 
@@ -32,9 +33,6 @@ class SceneLeaderBoard extends Phaser.Scene {
       btnDown: this.sound.add('sndBtnDown', { volume: 0.1 }),
     };
 
-    this.song = this.sound.add('victoryTheme', { volume: 0.3 });
-    this.song.play();
-
     this.btnRestart = this.add.sprite(
       this.game.config.width * 0.3,
       this.game.config.height * 0.9,
@@ -45,21 +43,19 @@ class SceneLeaderBoard extends Phaser.Scene {
     this.createButton(this.btnRestart, 'sprBtnRestart', 'sprBtnRestartHover', 'sprBtnRestartDown');
     this.btnRestart.on('pointerup', () => {
       this.btnRestart.setTexture('sprBtnRestart');
-      this.song.stop();
       this.scene.start('GameMain');
     }, this);
 
-    this.btnAbout = this.add.sprite(
-      this.game.config.width * 0.7,
-      this.game.config.height * 0.9,
-      'sprBtnAbout',
-    );
+    // this.btnAbout = this.add.sprite(
+    //   this.game.config.width * 0.7,
+    //   this.game.config.height * 0.9,
+    //   'sprBtnAbout',
+    // );
 
     this.btnAbout.setInteractive();
     this.createButton(this.btnAbout, 'sprBtnAbout', 'sprBtnAboutHover', 'sprBtnAboutDown');
     this.btnAbout.on('pointerup', () => {
       this.btnAbout.setTexture('sprBtnAbout');
-      this.song.stop();
       this.scene.start('SceneAbout');
     }, this);
 
@@ -149,7 +145,6 @@ class SceneLeaderBoard extends Phaser.Scene {
 
   update() {
     if (this.keySpace.isDown) {
-      this.song.stop();
       this.scene.start('GameMain');
     }
   }

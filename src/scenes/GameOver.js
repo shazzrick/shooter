@@ -1,10 +1,17 @@
 import Phaser from 'phaser';
 import ScrollingBackground from './backgrounds';
+import { getLocalScores } from '../localStorage';
 import { submitHighScore } from '../API/leaderboardCall';
 
 export default class GameOver extends Phaser.Scene {
   constructor() {
     super({ key: 'GameOver' });
+  }
+
+  preload() {
+    this.load.image('sprBtnRecord', '../src/assets/sprBtnRecord.png');
+    this.load.image('sprBtnRecordDown', '../src/assets/sprBtnRecordDown.png');
+    this.load.image('sprBtnRecordHover', '../src/assets/sprBtnRecordHover.png');
   }
 
   create() {
@@ -16,6 +23,20 @@ export default class GameOver extends Phaser.Scene {
       align: 'center',
     });
     this.title.setOrigin(0.5);
+
+    this.scores = getLocalScores();
+
+    this.gameOverSceneScore = this.add.text(
+      this.game.config.width * 0.6,
+      this.game.config.height * 0.72,
+      `Score: ${this.scores[0]}`, {
+        color: '#d0c600',
+        fontFamily: 'sans-serif',
+        fontSize: '30px',
+        lineHeight: 1.3,
+        align: 'center',
+      },
+    );
 
     this.sfx = {
       btnOver: this.sound.add('sndBtnOver'),
