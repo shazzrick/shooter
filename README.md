@@ -1,6 +1,6 @@
 # JavaScript Capstone Project: Build a Shooter Game
 
-
+![Home page](./src/assets/mainmenu.png)
 
 This is Microverse's final project in Javascript's course.
 
