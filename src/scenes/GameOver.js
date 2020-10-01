@@ -12,22 +12,15 @@ export default class GameOver extends Phaser.Scene {
     this.load.image('sprBtnRecord', '../src/assets/sprBtnRecord.png');
     this.load.image('sprBtnRecordDown', '../src/assets/sprBtnRecordDown.png');
     this.load.image('sprBtnRecordHover', '../src/assets/sprBtnRecordHover.png');
-    this.load.image('vader', '../src/assets/vaderGameOver.jpg');
     this.load.image('gameOverTitle', '../src/assets/titleGameOver2.png');
   }
 
   create() {
-    // this.gameOverTitle = this.add.image(
-    //   this.game.config.width * 0.5,
-    //   this.game.config.height * 0.1,
-    //   'gameOverTitle',
-    // );
-
-    // this.gameOverImage = this.add.image(
-    //   this.game.config.width * 0.5,
-    //   this.game.config.height * 0.4,
-    //   'vader',
-    // );
+    this.gameOverTitle = this.add.image(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.1,
+      'gameOverTitle',
+    );
 
     this.scores = getLocalScores();
     this.gameOverSceneScore = this.add.text(
