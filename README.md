@@ -122,7 +122,7 @@ The Leader Board will only show 20 names.
 
 <!-- Links -->
 [assignment]: hhttps://www.notion.so/Shooter-game-old-version-5f30f19211c44343baf2b7d1e0034c26
-[live-version]: https://starwars-spaceshooter.herokuapp.com/
+[live-version]: https://tennyphasergame.herokuapp.com/
 [phaser-url]: https://phaser.io/
 [sg-tutorial]: https://learn.yorkcs.com/category/tutorials/gamedev/phaser-3/build-a-space-shooter-with-phaser-3/
 [LB-API]: https://www.notion.so/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3
