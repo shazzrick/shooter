@@ -1,6 +1,6 @@
 async function createGame() {
   const game = {
-    name: 'Space Shooter',
+    name: 'TennyZvaita Space Shooter',
   };
   const post = JSON.stringify(game);
   const address = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
@@ -24,7 +24,7 @@ async function submitHighScore(userName, scoreValue) {
     score: scoreValue,
   };
   const post = JSON.stringify(submit);
-  const address = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/N9E2TejbOkDiI58nb6Vu/scores/';
+  const address = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/WtKT7KZX1bi9BCfM1277/scores/';
   const settings = {
     method: 'POST',
     headers: {
@@ -47,7 +47,7 @@ function sorting(obj) {
 }
 
 async function getScoreBoard() {
-  const address = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/N9E2TejbOkDiI58nb6Vu/scores/';
+  const address = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/WtKT7KZX1bi9BCfM1277/scores/';
   const settings = {
     method: 'GET',
     headers: {

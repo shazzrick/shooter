@@ -12,20 +12,24 @@ export default class GameOver extends Phaser.Scene {
     this.load.image('sprBtnRecord', '../src/assets/sprBtnRecord.png');
     this.load.image('sprBtnRecordDown', '../src/assets/sprBtnRecordDown.png');
     this.load.image('sprBtnRecordHover', '../src/assets/sprBtnRecordHover.png');
+    this.load.image('vader', '../src/assets/vaderGameOver.jpg');
+    this.load.image('gameOverTitle', '../src/assets/titleGameOver2.png');
   }
 
   create() {
-    this.title = this.add.text(this.game.config.width * 0.5, 128, 'GAME OVER', {
-      fontFamily: 'monospace',
-      fontSize: 48,
-      fontStyle: 'bold',
-      color: '#ffffff',
-      align: 'center',
-    });
-    this.title.setOrigin(0.5);
+    // this.gameOverTitle = this.add.image(
+    //   this.game.config.width * 0.5,
+    //   this.game.config.height * 0.1,
+    //   'gameOverTitle',
+    // );
+
+    // this.gameOverImage = this.add.image(
+    //   this.game.config.width * 0.5,
+    //   this.game.config.height * 0.4,
+    //   'vader',
+    // );
 
     this.scores = getLocalScores();
-
     this.gameOverSceneScore = this.add.text(
       this.game.config.width * 0.6,
       this.game.config.height * 0.72,
@@ -39,32 +43,18 @@ export default class GameOver extends Phaser.Scene {
     );
 
     this.sfx = {
-      btnOver: this.sound.add('sndBtnOver'),
-      btnDown: this.sound.add('sndBtnDown'),
+      btnOver: this.sound.add('sndBtnOver', { volume: 0.1 }),
+      btnDown: this.sound.add('sndBtnDown', { volume: 0.1 }),
     };
 
     this.btnRestart = this.add.sprite(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
+      this.game.config.height * 0.9,
       'sprBtnRestart',
     );
 
     this.btnRestart.setInteractive();
-
-    this.btnRestart.on('pointerover', () => {
-      this.btnRestart.setTexture('sprBtnRestartHover'); // set the button texture to sprBtnPlayHover
-      this.sfx.btnOver.play(); // play the button over sound
-    }, this);
-
-    this.btnRestart.on('pointerout', () => {
-      this.setTexture('sprBtnRestart');
-    });
-
-    this.btnRestart.on('pointerdown', () => {
-      this.btnRestart.setTexture('sprBtnRestartDown');
-      this.sfx.btnDown.play();
-    }, this);
-
+    this.createButton(this.btnRestart, 'sprBtnRestart', 'sprBtnRestartHover', 'sprBtnRestartDown');
     this.btnRestart.on('pointerup', () => {
       this.btnRestart.setTexture('sprBtnRestart');
       this.scene.start('GameMain');
@@ -82,6 +72,8 @@ export default class GameOver extends Phaser.Scene {
       this.btnRecord.setTexture('sprBtnRecord');
       this.scene.start('SceneLeaderBoard');
     }, this);
+
+    this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) {

@@ -11,7 +11,8 @@ class SceneLeaderBoard extends Phaser.Scene {
     this.load.image('sprBg0', '../src/assets/sprBg0.png');
     this.load.image('sprBg1', '../src/assets/sprBg1.png');
     this.load.image('sprBtnRestart', '../src/assets/sprBtnRestart.png');
-
+    this.load.image('sprBtnRestartHover', '../src/assets/sprBtnRestartHover.png');
+    this.load.image('sprBtnRestartDown', '../src/assets/sprBtnRestartDown.png');
     this.load.image('leaderBoardTitle', '../src/assets/leaderBoard.png');
 
     this.load.scenePlugin({
@@ -44,19 +45,6 @@ class SceneLeaderBoard extends Phaser.Scene {
     this.btnRestart.on('pointerup', () => {
       this.btnRestart.setTexture('sprBtnRestart');
       this.scene.start('GameMain');
-    }, this);
-
-    // this.btnAbout = this.add.sprite(
-    //   this.game.config.width * 0.7,
-    //   this.game.config.height * 0.9,
-    //   'sprBtnAbout',
-    // );
-
-    this.btnAbout.setInteractive();
-    this.createButton(this.btnAbout, 'sprBtnAbout', 'sprBtnAboutHover', 'sprBtnAboutDown');
-    this.btnAbout.on('pointerup', () => {
-      this.btnAbout.setTexture('sprBtnAbout');
-      this.scene.start('SceneAbout');
     }, this);
 
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);

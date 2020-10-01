@@ -32,8 +32,8 @@ export default class GameMain extends Phaser.Scene {
     this.load.image('sprLaserEnemy0', '../src/assets/sprLaserEnemy0.png');
     this.load.image('sprLaserPlayer', '../src/assets/sprLaserPlayer.png');
     this.load.spritesheet('sprPlayer', '../src/assets/sprPlayer.png', {
-      frameWidth: 16,
-      frameHeight: 16,
+      frameWidth: 32,
+      frameHeight: 32,
     });
 
     this.load.audio('sndExplode0', '../src/assets/sndExplode0.wav');

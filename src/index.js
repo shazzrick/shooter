@@ -4,6 +4,7 @@ import MainMenu from './scenes/MainMenu';
 import GameMain from './scenes/GameMain';
 import GameOver from './scenes/GameOver';
 import SceneLeaderBoard from './scenes/SceneLeaderBoard';
+import 'regenerator-runtime/runtime';
 
 const config = {
   type: Phaser.WEBGL,
@@ -11,6 +12,9 @@ const config = {
   width: 480,
   height: 640,
   backgroundColor: 'black',
+  dom: {
+    createContainer: true,
+  },
   physics: {
     default: 'arcade',
     arcade: {
