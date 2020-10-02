@@ -12,10 +12,17 @@ async function createGame() {
     },
     body: post,
   };
-  const response = await fetch(address, settings);
-  const answer = await response.json();
+  try {
+    const response = await fetch(address, settings);
 
-  return answer;
+    if (response.ok) {
+      const answer = await response.json();
+      return answer;
+    }
+    throw new Error('Request failed');
+  } catch (error) {
+    return error;
+  }
 }
 
 async function submitHighScore(userName, scoreValue) {
@@ -33,9 +40,17 @@ async function submitHighScore(userName, scoreValue) {
     },
     body: post,
   };
-  const response = await fetch(address, settings);
-  const answer = await response.json();
-  return answer;
+  try {
+    const response = await fetch(address, settings);
+
+    if (response.ok) {
+      const answer = await response.json();
+      return answer;
+    }
+    throw new Error('Request failed');
+  } catch (error) {
+    return error;
+  }
 }
 
 function sorting(obj) {
@@ -55,10 +70,17 @@ async function getScoreBoard() {
       'Content-Type': 'application/json',
     },
   };
-  const response = await fetch(address, settings);
-  const answer = await response.json();
+  try {
+    const response = await fetch(address, settings);
 
-  return sorting(answer.result);
+    if (response.ok) {
+      const answer = await response.json();
+      return sorting(answer.result);
+    }
+    throw new Error('Request failed');
+  } catch (error) {
+    return error;
+  }
 }
 
 export { submitHighScore, getScoreBoard, createGame };
