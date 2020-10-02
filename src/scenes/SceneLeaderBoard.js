@@ -11,6 +11,7 @@ class SceneLeaderBoard extends Phaser.Scene {
     this.load.image('sprBg0', '../src/assets/sprBg0.png');
     this.load.image('sprBg1', '../src/assets/sprBg1.png');
     this.load.image('sprBtnRestart', '../src/assets/sprBtnRestart.png');
+    this.load.image('sprBtnMainMenu', '../src/assets/sprBtnMainMenu.png');
     this.load.image('sprBtnRestartHover', '../src/assets/sprBtnRestartHover.png');
     this.load.image('sprBtnRestartDown', '../src/assets/sprBtnRestartDown.png');
     this.load.image('leaderBoardTitle', '../src/assets/leaderBoard.png');
@@ -45,6 +46,19 @@ class SceneLeaderBoard extends Phaser.Scene {
     this.btnRestart.on('pointerup', () => {
       this.btnRestart.setTexture('sprBtnRestart');
       this.scene.start('GameMain');
+    }, this);
+
+    this.btnMainMenu = this.add.sprite(
+      this.game.config.width * 0.6,
+      this.game.config.height * 0.9,
+      'sprBtnMainMenu',
+    );
+
+    this.btnMainMenu.setInteractive();
+    this.createButton(this.btnMainMenu, 'sprBtnMainMenu', 'sprBtnMainMenu', 'sprBtnMainMenu');
+    this.btnMainMenu.on('pointerup', () => {
+      this.btnMainMenu.setTexture('sprBtnMainMenu');
+      this.scene.start('MainMenu');
     }, this);
 
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
