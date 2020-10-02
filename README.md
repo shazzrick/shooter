@@ -46,12 +46,14 @@ The keyboard keys to play the game are A-Left, S-Down, D-Right, W-Up for movemen
 
 You can play the game online clicking [here][live-version] or locally following these steps:
 
-* Click on the green button "Clone or Download"
-* Click on Download ZIP
-* Extract the game
-* In your terminal, navigate to the game's folder
-* Run 'node server.js'
-* Open, in your browser, 'localhost:8080'
+* Install Node Package Manager (npm) on your machine.
+* Scroll to the top of this page and click on the green button "Clone or Download".
+* Click on Download ZIP.
+* Extract the game to a folder of your preference.
+* Open your terminal and navigate to the folder you extracted the game to.
+* Run 'npm install'.
+* Run 'npm start'.
+* Open, in your browser, 'localhost:8080'.
 
 ### Design
 
