@@ -36,6 +36,10 @@ export default class GameMain extends Phaser.Scene {
       frameHeight: 32,
     });
 
+    this.load.image('carierlaser', '../src/assets/carierlaser.png', {
+      frameWidth: 52,
+      frameHeight: 52,
+    });
     this.load.audio('sndExplode0', '../src/assets/sndExplode0.wav');
     this.load.audio('sndExplode1', '../src/assets/sndExplode1.wav');
     this.load.audio('sndLaser', '../src/assets/sndLaser.wav');
