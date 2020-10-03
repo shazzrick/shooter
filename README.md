@@ -42,7 +42,7 @@ This is a one player game. The game starts with the player's battleship aligned 
 
 ### How to play
 
-The keyboard keys to play the game are A-Left, S-Down, D-Right, W-Up for movement and the space-key for shooting.
+The keyboard keys to play the game are the direction keys for movement and the space-key for shooting.
 
 You can play the game online clicking [here][live-version] or locally following these steps:
 
