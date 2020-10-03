@@ -19,7 +19,7 @@ async function createGame() {
       const answer = await response.json();
       return answer;
     }
-    throw new Error('Request failed');
+    throw new Error('API is down');
   } catch (error) {
     return error;
   }
@@ -83,4 +83,6 @@ async function getScoreBoard() {
   }
 }
 
-export { submitHighScore, getScoreBoard, createGame };
+export {
+  submitHighScore, getScoreBoard, createGame,
+};

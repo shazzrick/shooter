@@ -24,7 +24,8 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "setupFiles": [
-      "jest-canvas-mock"
+      "jest-canvas-mock",
+      "./src/setupJest.js"
     ],
     "moduleFileExtensions": [
       "js",
@@ -61,7 +62,8 @@
   },
   "dependencies": {
     "phaser": "^3.24.1",
-    "regenerator-runtime": "^0.13.7"
+    "regenerator-runtime": "^0.13.7",
+    "jest-fetch-mock": "^3.0.3"
   },
   "heroku-run-build-script": true
 }
